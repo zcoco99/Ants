@@ -2,35 +2,57 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ButtonPanel extends JPanel {
-    private JButton button1;
-    private JButton button2;
+    private JButton addButton;
+    private JButton minusButton;
+    private JButton lastButton;
+    static IDPanel idPanel = new IDPanel();
+    private ArrayList<JButton> antList;
+
+    private int count=0;
 
     public ButtonPanel(){
-        button1 = new JButton("+");
-        button2 = new JButton("-");
+        antList = new ArrayList<JButton>();
+        addButton = new JButton("+");
+        minusButton = new JButton("-");
 
         setLayout(new GridLayout(1,2));
-        add(button1);
-        add(button2);
+        add(addButton);
+        add(minusButton);
 
-        button1.addActionListener(new ActionListener() {
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("ID added");
-                //Add a button to ID panel
-                JButton buttonID = new JButton("ID 1");
-                //idPanel.add();
-                //IDPanel.add();
+                count++;
+                JButton btn = new JButton("ID" + count);
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        lastButton = btn;
+                    }
+                });
+                idPanel.add(btn);
+                idPanel.revalidate();
+                idPanel.repaint();
             }
         });
 
-        button2.addActionListener(new ActionListener() {
+        minusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("ID removed");
+                if(lastButton != null){
+                    lastButton.getParent().remove(lastButton);
+                    idPanel.revalidate();
+                    idPanel.repaint();
+                }
+                lastButton = null;
             }
         });
+    }
+
+    public static JPanel idPanelReturn(){
+        return idPanel;
     }
 }
