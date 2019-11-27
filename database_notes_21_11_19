@@ -1,0 +1,24 @@
+Construct the entity relationship diagram (ERD)
+
+Home page:
+  Thumbnail:  Query video_id, quantity and selection based on admin setting
+              frame_id = 1
+              display the image
+  Progress bar: Query all COUNT(frame), query COUNT(labelled framed)
+  
+  Take in: video_id selected
+
+
+Label page:
+  Image:
+    Query the MIN(unlabelled frame) +- 5
+    Query coordinates for all the lablled frames
+  
+  
+  Submit button:
+    Update
+    
+    
+Log in timestamp table
+    
+  
