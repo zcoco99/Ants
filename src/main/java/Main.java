@@ -5,6 +5,9 @@ public class Main {
     static GraphicsConfiguration gc; // Class field containing config info
 
     public static void main(String[] args) {
+
+        new ConnectToDB();
+
         JFrame frame = new JFrame(gc); // Create a new JFrame
         frame.setSize(500, 300);
         JPanel mainContainer = new JPanel();

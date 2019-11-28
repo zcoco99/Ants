@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConnectToDB {
 
-    public static ConnectToDB(){
+    public ConnectToDB(){
 
         ResultSet rset = null;
 
