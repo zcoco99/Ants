@@ -13,7 +13,7 @@ cache:
 deploy:
   provider: heroku
   api_key:
-    secure: 3dece2ce-6112-432c-a556-376d15f88bff
+    secure: f5fa2fc6-7cd3-4469-804d-a7333cb8271c
   app: ants-tracker
   on:
     branch: Winn
