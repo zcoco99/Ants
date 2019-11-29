@@ -23,3 +23,42 @@ Log in timestamp table
     
 https://medium.com/@vapurrmaid/getting-started-with-heroku-postgres-and-pgadmin-run-on-part-2-90d9499ed8fb
   
+  
+  
+  
+ SUBMIT BUTTON QUERY =>
+ --video
+DO $$
+BEGIN
+IF NOT EXISTS (
+	SELECT * FROM video WHERE video_id = '5')
+	THEN
+		INSERT INTO video (video_id) VALUES (5);
+	END IF;
+END $$;
+
+--ant
+DO $$
+BEGIN
+IF NOT EXISTS (
+	SELECT * FROM ant WHERE ant_id = 1 AND video_id='5')
+	THEN
+		INSERT INTO ant (ant_id, video_id) VALUES (1, 5);
+	END IF;
+END $$;
+
+
+--frame
+INSERT INTO frame (video_id, frame_id) values (5, 17);
+
+--coordinates
+INSERT INTO coordinates (ant_id, frame_id, x_coord, y_coord, video_id) values (1, 17, 1, 1, 5);
+
+
+
+
+--view
+--SELECT * FROM video INNER JOIN frame ON video.video_id = frame.video_id INNER JOIN ant ON video.video_id = ant.video_id;
+SELECT * FROM coordinates
+
+
