@@ -62,3 +62,9 @@ INSERT INTO coordinates (ant_id, frame_id, x_coord, y_coord, video_id) values (1
 SELECT * FROM coordinates
 
 
+CHECK FRAME EXISTS IN DATABASE FOR SPECIFIED VIDEO =>
+SELECT frame_id FROM frame WHERE video_id = "1"
+
+
+
+
