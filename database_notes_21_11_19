@@ -66,6 +66,7 @@ CHECK FRAME EXISTS IN DATABASE FOR SPECIFIED VIDEO =>
 SELECT frame_id FROM frame WHERE video_id = "1"
 
 to see if the frame is alr in the database
+also return count
 
 
 
