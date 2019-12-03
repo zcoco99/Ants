@@ -1,44 +1,48 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class username extends JFrame
 {
     //Variables to be used in all functions
-    JTextField namefield;
     JButton startbtn;
     JLabel greet;
-    JTextPane user1;
+    JTextField username;
+    String user1;
 
     public username(){
-        namefield = new JTextField(20);
+        user1 = new String();
         startbtn = new JButton("Start");
-        greet = new JLabel("<html>Enter your name</html>");
-        user1 = new JTextPane();
+        greet = new JLabel("<html> Welcome to Ants GUI <br/>Enter your name</html>");
+        username = new JTextField();
+        username.setPreferredSize((new Dimension(100,20)));
+
 
         // add components
         add(greet);
-        add(namefield);
+        add(username);
 
-        //add(user1);
-
-        // anonymous inner class of ActionListener
-        /* ActionListener startAction = new ActionListener() {
-            public void actionPerformed(ActionEvent ae)
-            {
-                String name1 = namefield.getText();
-                user1.setText("Welcome "+name1);
-                new homeframe();
+        // Action: get username when user press start button
+        ActionListener whatsmyname = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                user1 = username.getText();
+                System.out.println(user1);  // print user input on terminal
             }
-        }; */
+        };
+        startbtn.addActionListener(whatsmyname);
 
-        // add actions for button
-        startbtn.addActionListener(actionEvent -> new VideoMenu());
+
+        // add action to button
+        startbtn.addActionListener(actionEvent -> new VideoMenu(user1));
         add(startbtn);
 
         setLayout(new FlowLayout());
         setVisible(true);
         setSize(500,300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
 }
