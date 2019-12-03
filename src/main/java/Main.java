@@ -11,9 +11,6 @@ public class Main {
         JFrame frame = new JFrame(gc); // Create a new JFrame
         frame.setSize(500, 300);
         JPanel mainContainer = new JPanel();
-
-
-
         mainContainer.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
