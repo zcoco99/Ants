@@ -21,7 +21,7 @@ public class Main {
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 0;
-        c.weightx=5;
+        c.weightx=4;
         c.weighty=1;
         mainContainer.add(new VideoFramesContainer(),c);
 
