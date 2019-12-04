@@ -28,7 +28,6 @@ public class ButtonPanel extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         lastButton = btn;
-                        //System.out.println("Button Panel: " + returnLastButton().getText());
                     }
                 });
                 idPanel.add(btn);

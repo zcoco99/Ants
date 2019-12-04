@@ -26,9 +26,7 @@ public class FBPanel extends JPanel {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                antData = VideoPanel.antDataReturn();
-                //System.out.println("antdata: ");
-                //System.out.println(antData);
+                new TalkServlet();
             }
         });
     }

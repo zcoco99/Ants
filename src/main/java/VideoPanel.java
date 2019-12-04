@@ -23,7 +23,7 @@ public class VideoPanel extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                boolean flag=false;
+                boolean flag;
                 int index=0;
 
                 int x_coordinate;
@@ -40,11 +40,6 @@ public class VideoPanel extends JPanel {
                     individualAntData.add(x_coordinate);
                     individualAntData.add(y_coordinate);
 
-                    //System.out.println("individualAntData:");
-                    //for (int i = 0; i < 3; i++) {
-                    //System.out.println(individualAntData.get(i));
-                    //}
-
                     flag=false;
                     for(int i=0; i<antData.size(); i++){
                         if(individualAntData.get(0) == antData.get(i).get(0)) {
@@ -54,17 +49,11 @@ public class VideoPanel extends JPanel {
                     }
 
                     if(flag){
-                        //System.out.println("Duplicate index: " + index);
                         antData.set(index, individualAntData);
                     }
                     else{
-                        //System.out.println("New ant id");
                         antData.add(individualAntData);
                     }
-
-                    //System.out.println("antData:");
-                    //System.out.println(antData);
-
                 }
             }
 
