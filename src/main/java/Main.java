@@ -1,10 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class Main {
     static GraphicsConfiguration gc; // Class field containing config info
 
     public static void main(String[] args) {
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "\\export");
+        if(!file.exists()){
+            if(file.mkdir()){
+                System.out.println("Directory is created");
+            }
+            else{
+                System.out.println("Failed to create directory");
+            }
+        }
+
         JFrame frame = new JFrame(gc); // Create a new JFrame
         frame.setSize(500, 300);
         JPanel mainContainer = new JPanel();
