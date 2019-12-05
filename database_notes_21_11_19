@@ -65,8 +65,17 @@ SELECT * FROM coordinates
 CHECK FRAME EXISTS IN DATABASE FOR SPECIFIED VIDEO =>
 SELECT frame_id FROM frame WHERE video_id = "1"
 
-to see if the frame is alr in the database
-also return count
+
+
+
+=> select image and return count 
+
+
+SELECT video_id, COUNT(video_id) 
+FROM frame 
+GROUP BY video_id 
+ORDER BY CAST(video_id AS INT)
+LIMIT 4
 
 
 
