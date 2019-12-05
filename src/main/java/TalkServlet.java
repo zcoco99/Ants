@@ -64,7 +64,7 @@ public class TalkServlet {
         //next button clicked
         HttpURLConnection conn = null;
         try{
-            URL myURL = new URL("http://localhost:8080/AntsServlet/mainpage");
+            URL myURL = new URL("http://localhost:8080/AntsServlet/FBpage");
             conn = null;
             conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("POST");
@@ -104,6 +104,31 @@ public class TalkServlet {
                 System.out.println(dataFB.getFrameID());
             }
             bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void postXianData(){
+        String videoID = "Video post xian data";
+        byte[] body = videoID.getBytes(StandardCharsets.UTF_8);
+
+        HttpURLConnection conn = null;
+        try{
+            //change URL to correct page
+            URL myURL = new URL("http://localhost:8080/AntsServlet/landingpage");
+            conn = null;
+            conn = (HttpURLConnection) myURL.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Accept", "text/html");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setDoOutput(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (OutputStream outputStream = conn.getOutputStream()) {
+            outputStream.write(body,0,body.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
