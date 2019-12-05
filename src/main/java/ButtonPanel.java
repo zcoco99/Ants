@@ -58,12 +58,12 @@ public class ButtonPanel extends JPanel {
     }
 
     //Function for ID panel object to be accessed in other classes
-    public static JPanel idPanelReturn(){
+    public static JPanel getIDPanel(){
         return idPanel;
     }
 
     //Function to return the last clicked button
-    public static JButton returnLastButton(){
+    public static JButton getLastButton(){
         if (lastButton == null){
             return null;
         }

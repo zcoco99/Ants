@@ -8,6 +8,7 @@ buttons (FBPanel)
 */
 
 public class VideoFramesContainer extends JPanel {
+
     public VideoFramesContainer(){
         setBackground(Color.red);
         setSize(250, 300);

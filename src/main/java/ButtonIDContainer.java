@@ -11,7 +11,7 @@ public class ButtonIDContainer extends JPanel {
 
     public ButtonIDContainer(){
         idPanel = new IDPanel();
-        idPanel = (IDPanel) ButtonPanel.idPanelReturn();
+        idPanel = (IDPanel) ButtonPanel.getIDPanel();
         setBackground(Color.orange);
         setSize(250, 300);
         setLayout(new GridBagLayout());

@@ -2,8 +2,6 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class TalkServlet {
         }
     }
 
-    static void makePostRequest(){
+    static void postSubmit(){
         SubmitData submitData = new SubmitData();
         Gson gson = new Gson();
         String jsonString = gson.toJson(submitData);
@@ -75,6 +73,6 @@ public class TalkServlet {
     }
 
     public TalkServlet(){
-        makePostRequest();
+        postSubmit();
     }
 }
