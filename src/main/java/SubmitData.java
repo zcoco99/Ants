@@ -12,6 +12,10 @@ public class SubmitData implements Serializable {
     private int frameID;
 
     public SubmitData(){
+        getData();
+    }
+
+    public void getData() {
         antData = VideoPanel.getAntData();       //gets the ArrayList antData from VideoPanel
         //videoID = videoIDReturn();
         //frameID = frameIDReturn();
