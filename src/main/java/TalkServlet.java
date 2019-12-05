@@ -1,10 +1,14 @@
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import jdk.nashorn.internal.parser.JSONParser;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /*
 The TalkServlet class is used to establish a connection with the
@@ -13,6 +17,23 @@ servlet and to submit the ant data to the servlet using POST
 
 public class TalkServlet {
     private static ArrayList<ArrayList<Integer>> antData;
+
+    static void postSend(){
+        HttpURLConnection conn = null;
+
+        try{
+            //Change URL to the correct location later
+            URL myURL = new URL("http://localhost:8080/AntsServlet/datasend");
+            conn = null;
+            conn = (HttpURLConnection) myURL.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Accept", "text/html");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setDoOutput(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     static void makeGetRequest(){
         try {
@@ -62,8 +83,16 @@ public class TalkServlet {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
             String inputLine;
-            while ((inputLine = bufferedReader.readLine()) != null) {
-                System.out.println(inputLine);
+
+            while((inputLine = bufferedReader.readLine()) != null) {
+                Gson inputGson = new Gson();
+                DataSend dataSend = inputGson.fromJson(inputLine, DataSend.class);
+                //System.out.println("Ant data: ");
+                //System.out.println(dataSend.getAntData());
+                //System.out.println("Video ID: ");
+                //System.out.println(dataSend.getVideoID());
+                //System.out.println("Frame ID: ");
+                //System.out.println(dataSend.getFrameID());
             }
             bufferedReader.close();
         } catch (IOException e) {
@@ -74,5 +103,9 @@ public class TalkServlet {
 
     public TalkServlet(){
         postSubmit();
+    }
+
+    public void setupConnection(){
+
     }
 }

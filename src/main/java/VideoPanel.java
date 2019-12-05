@@ -42,9 +42,7 @@ public class VideoPanel extends JPanel {
                 if(ButtonPanel.getLastButton()!=null) {
                     buttonID = Integer.parseInt(ButtonPanel.getLastButton().getText());
 
-                    individualAntData.add(buttonID);
-                    individualAntData.add(x_coordinate);
-                    individualAntData.add(y_coordinate);
+                    fillIndividualAntData(individualAntData, buttonID, x_coordinate, y_coordinate);
 
                     flag=false;
                     for(int i=0; i<antData.size(); i++){
@@ -88,5 +86,11 @@ public class VideoPanel extends JPanel {
         antData.remove(0);
         antData.remove(0);
         return antData;
+    }
+
+    public void fillIndividualAntData(ArrayList<Integer> individualAntData, int buttonID, int x_coordinate, int y_coordinate){
+        individualAntData.add(buttonID);
+        individualAntData.add(x_coordinate);
+        individualAntData.add(y_coordinate);
     }
 }
