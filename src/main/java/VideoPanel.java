@@ -5,6 +5,12 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 /*
+The VideoPanel class is a JPanel that is used to display the frames of the
+video. The panel also has a mouse listener to track the coordinates of the
+ant, which is then stored in an ArrayList called antData
+*/
+
+/*
 Add the check for the case when button is removed, remove that from antData too
 */
 
@@ -79,6 +85,8 @@ public class VideoPanel extends JPanel {
     }
 
     public static ArrayList<ArrayList<Integer>> antDataReturn() {
+        antData.remove(0);
+        antData.remove(0);
         return antData;
     }
 }

@@ -8,6 +8,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/*
+The TalkServlet class is used to establish a connection with the
+servlet and to submit the ant data to the servlet using POST
+*/
+
 public class TalkServlet {
     private static ArrayList<ArrayList<Integer>> antData;
 
@@ -31,9 +36,6 @@ public class TalkServlet {
     }
 
     static void makePostRequest(){
-        //antData = new ArrayList<ArrayList<Integer>>();
-        //antData = VideoPanel.antDataReturn();
-
         SubmitData submitData = new SubmitData();
         Gson gson = new Gson();
         String jsonString = gson.toJson(submitData);
