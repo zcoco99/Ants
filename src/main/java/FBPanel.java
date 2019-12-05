@@ -16,6 +16,10 @@ public class FBPanel extends JPanel {
         add(prevButton);
         add(nextButton);
 
+        prevButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) { videoPanel.getPrevFrame(); }
+        });
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
