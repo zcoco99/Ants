@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class DataSend {
+public class FBData {
     private ArrayList<ArrayList<Integer>> antData;
     private String videoID;
     private int frameID;
@@ -16,4 +16,13 @@ public class DataSend {
     public int getFrameID(){
         return frameID;
     }
+
+    public void setVideoID(String videoID){
+        this.videoID = videoID;
+    }
+
+    public void setFrameID(int frameID){
+        this.frameID = frameID;
+    }
+
 }

@@ -32,7 +32,17 @@ public class FBPanel extends JPanel {
             //When submitButton is clicked, submit data to servlet
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TalkServlet.postSubmit();
                 new TalkServlet();
+            }
+        });
+
+        forwardButton.addActionListener(new ActionListener() {
+            //When submitButton is clicked, submit data to servlet
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //send servlet the current frame and video
+                TalkServlet.postFBData();
             }
         });
     }
