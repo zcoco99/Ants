@@ -1,14 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 
+// Class Main() is a new JFrame with the main ant video labelling functions
+
 public class Main {
     static GraphicsConfiguration gc; // Class field containing config info
 
-    public static void main(String[] args) {
+    public Main(){
+
         JFrame frame = new JFrame(gc); // Create a new JFrame
         frame.setSize(500, 300);
         JPanel mainContainer = new JPanel();
-
         mainContainer.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
