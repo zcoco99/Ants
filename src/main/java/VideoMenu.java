@@ -26,7 +26,7 @@ class VideoMenu extends JFrame {
 
         // add components
         add(header);
-        // VideoMenu.add(new MenuList());  // add the video list grid
+        add(new MenuList());  // add the video list grid
         add(startlabel);
 
 

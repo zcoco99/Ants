@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 public class username extends JFrame
 {
     //Variables to be used in all functions
-    JButton startbtn;
-    JLabel greet;
-    JTextField username;
-    String user1;
+    private JButton startbtn;
+    private JLabel greet;
+    private JTextField username;
+    static String user1;
 
     public username(){
         user1 = new String();
@@ -48,5 +48,9 @@ public class username extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
+
+    public static String nameReturn(){
+        return user1;
+    } //returns username
 
 }
