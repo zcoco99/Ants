@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame(gc); // Create a new JFrame
-        frame.setSize(750, 500);
+        frame.setSize(700, 500);
         JPanel mainContainer = new JPanel();
 
         mainContainer.setLayout(new GridBagLayout());
