@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class IDPanel extends JPanel{
+public class IDPanel extends JPanel {
+
     public IDPanel(){
-        setBackground(Color.orange);
+        setLayout(new GridLayout(0,2));
     }
 }
+

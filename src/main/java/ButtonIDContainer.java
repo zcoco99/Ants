@@ -2,9 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ButtonIDContainer extends JPanel {
+    private IDPanel idPanel;
 
     public ButtonIDContainer(){
-
+        idPanel = new IDPanel();
+        idPanel = (IDPanel) ButtonPanel.idPanelReturn();
         setBackground(Color.orange);
         setSize(250, 300);
         setLayout(new GridBagLayout());
@@ -23,7 +25,6 @@ public class ButtonIDContainer extends JPanel {
         c.weighty=6;
         c.gridx = 0;
         c.gridy = 1;
-        add(new IDPanel(), c);
-
+        add(idPanel, c);
     }
 }
