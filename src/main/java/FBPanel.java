@@ -42,7 +42,12 @@ public class FBPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
-                TalkServlet.postFBData();
+
+
+                //TalkServlet.postFBData();
+
+                new TalkServlet();
+                TalkServlet.postInit();
             }
         });
     }
