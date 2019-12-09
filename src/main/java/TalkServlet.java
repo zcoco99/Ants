@@ -33,7 +33,8 @@ public class TalkServlet {
         }
     }
 
-    static void postSubmit(){
+    static void postSubmit() throws IOException {
+        System.out.println("Inside postSubmit()");
         SubmitData submitData = new SubmitData();
         Gson gson = new Gson();
         String jsonString = gson.toJson(submitData);
@@ -41,22 +42,31 @@ public class TalkServlet {
 
         HttpURLConnection conn = null;
         try{
-            URL myURL = new URL("http://localhost:8080/AntsServlet/mainpage");
+            URL myURL = new URL("http://localhost:8080/AntsServlet/submitpage");
             conn = null;
             conn = (HttpURLConnection) myURL.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Accept", "text/html");
             conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length", Integer.toString(body.length));
             conn.setDoOutput(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         try (OutputStream outputStream = conn.getOutputStream()) {
             outputStream.write(body,0,body.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Write the body of the request
+        try (OutputStream outputStream = conn.getOutputStream()) {
+            outputStream.write(body, 0, body.length);
+        }
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+
     }
 
     static void postFBData(){
@@ -163,7 +173,7 @@ public class TalkServlet {
         String initString = "Hi init page";
         byte[] body = initString.getBytes(StandardCharsets.UTF_8);
 
-        ArrayList<InitData> initDataArrayList = new ArrayList<InitData>();
+        InitDataArrayList initDataArrayList = new InitDataArrayList();
 
         HttpURLConnection conn = null;
         try{
@@ -191,18 +201,24 @@ public class TalkServlet {
             while((inputLine = bufferedReader.readLine()) != null) {
 
                 Gson inputGson = new Gson();
-                initDataArrayList = inputGson.fromJson(inputLine, ArrayList.class);
+                initDataArrayList = inputGson.fromJson(inputLine, InitDataArrayList.class);
             }
 
             System.out.println(initDataArrayList);
 
-            System.out.println(initDataArrayList.get(0).getVideoID());
+            ArrayList<String> jsonStringArray = new ArrayList<String>();
+
+            jsonStringArray = initDataArrayList.getArrayJsonString();
+
+            for(String i : jsonStringArray){
+                Gson inputGson = new Gson();
+                InitData initData = inputGson.fromJson(i, InitData.class);
+                initData.printInitData();
+            }
+
+            //System.out.println(initDataArrayList.get(0).getVideoID());
 
             System.out.println("test1");
-
-            for(InitData i : initDataArrayList){
-                i.printInitData();
-            }
 
 
 
