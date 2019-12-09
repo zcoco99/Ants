@@ -9,7 +9,7 @@ public class Main {
     public Main(){
 
         JFrame frame = new JFrame(gc); // Create a new JFrame
-        frame.setSize(500, 300);
+        frame.setSize(750, 500);
         JPanel mainContainer = new JPanel();
         mainContainer.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -23,7 +23,7 @@ public class Main {
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 0;
-        c.weightx=5;
+        c.weightx=4;
         c.weighty=1;
         mainContainer.add(new VideoFramesContainer(),c);
 

@@ -6,51 +6,15 @@ import java.awt.event.ActionListener;
 public class ButtonPanel extends JPanel {
     private JButton addButton;
     private JButton minusButton;
-    private JButton lastButton;
-    static IDPanel idPanel = new IDPanel();
-
-    private int count=0;
 
     public ButtonPanel(){
         addButton = new JButton("+");
         minusButton = new JButton("-");
 
         setLayout(new GridLayout(1,2));
+        addButton = new JButton("+");
+        minusButton = new JButton("-");
         add(addButton);
         add(minusButton);
-
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                count++;
-                JButton btn = new JButton("ID" + count);
-                btn.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        lastButton = btn;
-                    }
-                });
-                idPanel.add(btn);
-                idPanel.revalidate();
-                idPanel.repaint();
-            }
-        });
-
-        minusButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(lastButton != null){
-                    lastButton.getParent().remove(lastButton);
-                    idPanel.revalidate();
-                    idPanel.repaint();
-                }
-                lastButton = null;
-            }
-        });
-    }
-
-    public static JPanel idPanelReturn(){
-        return idPanel;
     }
 }
-
