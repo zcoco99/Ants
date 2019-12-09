@@ -6,26 +6,19 @@ import java.awt.event.ActionListener;
 // Video menu page: displays 4 video thumbnails for user to choose from.
 // display user name, "start labelling" button that leads to the labelling window (Main).
 
-class VideoMenu extends JFrame {
+class VideoMenu extends JPanel {
     // public variables
-    JLabel header;
-    JButton startlabel;
+    private JLabel header;
+    private JButton startLabel;
+    private static boolean flag;
 
     public VideoMenu() // pass on the username
     {
+        setSize(600,500);
         setLayout(new GridBagLayout());
-
         header = new JLabel("Choose a Video");
 
         //==== "Start labelling" button ====
-        startlabel = new JButton(("Start Video Labelling"));
-        startlabel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                // new username.nameReturn();  // print user input on terminal
-                new Main();  // open up video labelling window
-            }
-        });
 
         // add components
         GridBagConstraints c = new GridBagConstraints();
@@ -45,17 +38,26 @@ class VideoMenu extends JFrame {
         c.weighty=4;
         add(new MenuList(),c);  // add the video list grid
 
+        startLabel = new JButton(("Start Video Labelling"));
+
         c.gridx = 0;
         c.gridy = 7;
         c.weightx=1;
         c.weighty=1;
-        add(startlabel,c);
+        add(startLabel,c);
 
+        flag = false;
+        startLabel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                flag=true;
+            }
+        });
 
-        // frame settings
-        //setLayout(new FlowLayout());
-        setVisible(true);
-        setSize(500,300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static boolean startClick(){
+        System.out.println("startClick() called");
+        return flag;
     }
 }
