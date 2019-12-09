@@ -17,7 +17,7 @@ public class MenuList extends JPanel{
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         vidID = 1; // default open video 1
-        ImageIcon ant1 = new ImageIcon(getClass().getClassLoader().getResource("./ant1.png"));
+        // ImageIcon ant1 = new ImageIcon(getClass().getClassLoader().getResource("./ant1.png"));
         //int offset =  vid1.getInsets().left;
         //vid1.setIcon(resizeIcon(ant1,vid1.getWidth()-offset,vid1.getHeight()-offset));
         //vid1 = new JButton(ant1);
