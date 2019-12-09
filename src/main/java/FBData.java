@@ -39,3 +39,4 @@ public class FBData {
 
     public void setImageByte(byte [] imageByteInput){this.imageByte = imageByteInput;}
 }
+

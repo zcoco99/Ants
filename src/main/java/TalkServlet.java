@@ -55,6 +55,7 @@ public class TalkServlet {
             e.printStackTrace();
         }
 
+
         try (OutputStream outputStream = conn.getOutputStream()) {
             outputStream.write(body,0,body.length);
         } catch (IOException e) {
@@ -169,7 +170,7 @@ public class TalkServlet {
     }
 
     static void postInit(){
-        //very start of the program
+
         String initString = "Hi init page";
         byte[] body = initString.getBytes(StandardCharsets.UTF_8);
 
@@ -216,11 +217,21 @@ public class TalkServlet {
                 initData.printInitData();
             }
 
+            //System.out.println(initDataArrayList.get(0).getVideoID());
+
             System.out.println("test1");
+
+
+
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+
+
+    }
+
+    public TalkServlet(){
     }
 }

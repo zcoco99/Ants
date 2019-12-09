@@ -40,5 +40,5 @@ public class InitData implements Serializable {
         System.out.println("Image Byte");
         System.out.println(this.imageByte);
     }
-
 }
+

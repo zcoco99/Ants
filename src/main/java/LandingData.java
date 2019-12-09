@@ -44,3 +44,4 @@ public class LandingData {
 
     public void setImageByte(byte [] imageByteInput){this.imageByte = imageByteInput;}
 }
+
