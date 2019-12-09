@@ -7,7 +7,7 @@ import java.util.TimerTask;
 
 public class VideoPanel extends JPanel {
     private static int[] frameID;
-    private static JLabel[] picLabel;
+    private static JLabel picLabel;
 
     public VideoPanel(){
         setBackground(Color.black);
@@ -18,7 +18,7 @@ public class VideoPanel extends JPanel {
         frameID[0] = 1;
         frameID[1] = 1;
 
-        picLabel = new JLabel[2];
+        picLabel = new JLabel();
 
         new java.util.Timer().schedule(new TimerTask(){
             @Override
@@ -28,7 +28,6 @@ public class VideoPanel extends JPanel {
                 loadFrame();
             }
         }, 500,500);
-
 
     }
     private void loadFrame() {
@@ -62,8 +61,8 @@ public class VideoPanel extends JPanel {
         Image scaling = overlay.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT);
         ImageIcon scaledImage = new ImageIcon(scaling);
 
-        picLabel[0] = new JLabel(scaledImage);
-        add(picLabel[0]);
+        picLabel = new JLabel(scaledImage);
+        add(picLabel);
         revalidate();
         repaint();
     }
@@ -73,7 +72,7 @@ public class VideoPanel extends JPanel {
        frameID[1]=frameID[0];
 
        if(frameID[0]>1) {
-           frameID[0] = frameID[0]-50;
+           frameID[0] = frameID[0]-1;
        }
     }
 
@@ -81,8 +80,8 @@ public class VideoPanel extends JPanel {
 
         frameID[0]=frameID[1];
 
-        if(frameID[1]<451) {
-            frameID[1] = frameID[1] + 50;
+        if(frameID[1]<65) {
+            frameID[1] = frameID[1] + 1;
         }
 
     };
