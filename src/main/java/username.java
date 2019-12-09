@@ -45,7 +45,7 @@ public class username extends JFrame
         };
         // add action to button
         startbtn.addActionListener(whatsmyname); // username will be
-        startbtn.addActionListener(actionEvent -> new VideoMenu(user1));  // open new menu frame
+        startbtn.addActionListener(actionEvent -> new VideoMenu());  // open new menu frame
 
         // add components
         GridBagConstraints c = new GridBagConstraints();

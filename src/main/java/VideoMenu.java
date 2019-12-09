@@ -11,7 +11,7 @@ class VideoMenu extends JFrame {
     JLabel header;
     JButton startlabel;
 
-    public VideoMenu(String username) // pass on the username
+    public VideoMenu() // pass on the username
     {
         setLayout(new GridBagLayout());
 
