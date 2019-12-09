@@ -12,6 +12,7 @@ public class ButtonIDContainer extends JPanel {
     public ButtonIDContainer(){
         idPanel = new IDPanel();
         idPanel = (IDPanel) ButtonPanel.getIDPanel();
+        setSize(250,300);
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 

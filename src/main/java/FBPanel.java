@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.io.IOException;
 
 /*
 The FBPanel class is a JPanel that contains 3 buttons:
@@ -12,38 +12,62 @@ The FBPanel class is a JPanel that contains 3 buttons:
 */
 
 public class FBPanel extends JPanel {
-    private JButton forwardButton;      //button to go to next frame
-    private JButton backButton;         //button to go to previous frame
+    private JButton nextButton;      //button to go to next frame
+    private JButton prevButton;         //button to go to previous frame
     private JButton submitButton;       //submits the ants coordinates
-    private JPanel videoPanel;
+    private VideoPanel videoPanel;
+    private static boolean fb;          //false for previous button and true for next button
 
     public FBPanel(){
         videoPanel = new VideoPanel();
-
         setLayout(new GridLayout(1,3));
-        forwardButton = new JButton("Next");
-        backButton = new JButton("Prev");
+        nextButton = new JButton("Next");
+        prevButton = new JButton("Prev");
         submitButton = new JButton("Submit");
-        add(backButton);
-        add(forwardButton);
+        add(prevButton);
+        add(nextButton);
         add(submitButton);
 
         submitButton.addActionListener(new ActionListener() {
             //When submitButton is clicked, submit data to servlet
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TalkServlet.postSubmit();
-                new TalkServlet();
+                try {
+                    TalkServlet.postSubmit();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
-        forwardButton.addActionListener(new ActionListener() {
+        nextButton.addActionListener(new ActionListener() {
             //When submitButton is clicked, submit data to servlet
             @Override
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
-                TalkServlet.postFBData();
+                VideoPanel.getNextFrame();
+                fb=true;
+                TalkServlet.postFB();
             }
         });
+
+        prevButton.addActionListener(new ActionListener() {
+            //When submitButton is clicked, submit data to servlet
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //send servlet the current frame and video
+                VideoPanel.getPrevFrame();
+                fb=false;
+                TalkServlet.postFB();
+            }
+        });
+    }
+
+    public static boolean getFBState(){
+        return fb;
+    }
+
+    public JPanel returnVideoPanel(){
+        return videoPanel;
     }
 }

@@ -4,6 +4,8 @@ public class FBData {
     private ArrayList<ArrayList<Integer>> antData;
     private String videoID;
     private int frameID;
+    private byte [] imageByte;
+    private boolean fb;
 
     public ArrayList<ArrayList<Integer>> getAntData() {
         return antData;
@@ -17,6 +19,12 @@ public class FBData {
         return frameID;
     }
 
+    public boolean getFB(){
+        return fb;
+    }
+
+    public byte [] getImageByte(){return this.imageByte;}
+
     public void setVideoID(String videoID){
         this.videoID = videoID;
     }
@@ -25,4 +33,9 @@ public class FBData {
         this.frameID = frameID;
     }
 
+    public void setFB(boolean fb){
+        this.fb=fb;
+    }
+
+    public void setImageByte(byte [] imageByteInput){this.imageByte = imageByteInput;}
 }
