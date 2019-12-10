@@ -65,6 +65,7 @@ public class MenuVideo extends JPanel{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vidID = 1;
+                //System.out.println("Clicked");
                 //getVidID(vidID);
             }
         });
