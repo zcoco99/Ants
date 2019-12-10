@@ -8,45 +8,63 @@ import java.awt.event.ActionListener;
 
 class LandingPage extends JPanel {
     private JLabel header;
-    private JButton startLabel;
+    private JButton startButton;
+    private static boolean landingFlag;
 
     public LandingPage() {
-        setSize(600,500);
-        setLayout(new GridBagLayout());
+        landingFlag = false;
+        System.out.println("LandingPage constructor called");
+        setSize(500,300);
+        //setLayout(new GridBagLayout());
+        setLayout(new GridLayout(0,1));
         header = new JLabel("Choose a Video");
 
         // add components
-        GridBagConstraints c = new GridBagConstraints();
+        //GridBagConstraints c = new GridBagConstraints();
 
-        c.fill = GridBagConstraints.BOTH;
-        c.anchor=GridBagConstraints.FIRST_LINE_START;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx=1;
-        c.weighty=1;
-        add(header ,c);
+        //c.fill = GridBagConstraints.BOTH;
+        //c.anchor=GridBagConstraints.FIRST_LINE_START;
+        //c.gridx = 0;
+        //c.gridy = 0;
+        //c.weightx=1;
+        //c.weighty=1;
+        //add(header ,c);
+        add(header);
         header.setHorizontalAlignment(JLabel.CENTER);  // center align JLabel header
 
-        c.gridx = 0;
-        c.gridy = 2;
-        c.weightx=1;
-        c.weighty=4;
-        add(new MenuVideo(),c);  // add the video list grid
+        //c.gridx = 0;
+        //c.gridy = 2;
+        //c.weightx=1;
+        //c.weighty=4;
+        add(new MenuVideo());
+        //add(new MenuVideo(),c);  // add the video list grid
 
-        startLabel = new JButton(("Start Video Labelling"));
+        startButton = new JButton(("Start Video Labelling"));
 
-        c.gridx = 0;
+        /*c.gridx = 0;
         c.gridy = 7;
         c.weightx=1;
-        c.weighty=1;
-        add(startLabel,c);
+        c.weighty=1;*/
+        add(startButton);
+        //add(startButton,c);
 
-        startLabel.addActionListener(new ActionListener() {
+        startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                PageHandler.getFrame2().setVisible(false);
-                PageHandler.getFrame3().setVisible(true);
+                //PageHandler.getFrame2().setVisible(false);
+                //PageHandler.getFrame3().setVisible(true);
+                TalkServlet.postLanding();
+                landingFlag=true;
+                new PageHandler();
             }
         });
+    }
+
+    public static boolean getLandingFlag(){
+        return landingFlag;
+    }
+
+    public static void setLandingFlag(boolean state){
+        landingFlag = state;
     }
 }

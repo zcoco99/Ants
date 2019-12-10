@@ -9,6 +9,7 @@ for holding the ButtonIDContainer and VideoFramesContainer
 public class TrackingPage extends JPanel{
 
     public TrackingPage() {
+        System.out.println("TrackingPage constructor called");
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 

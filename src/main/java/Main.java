@@ -7,6 +7,8 @@ for holding the ButtonIDContainer and VideoFramesContainer
 */
 
 public class Main {
+    static GraphicsConfiguration gc;
+
     public static void main(String[] args) {
         new PageHandler();
     }

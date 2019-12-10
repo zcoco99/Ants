@@ -21,10 +21,13 @@ Add the check for the case when button is removed, remove that from antData too
 public class VideoPanel extends JPanel {
     private static ArrayList<ArrayList<Integer>> antData = new ArrayList<ArrayList<Integer>>();
     private ArrayList<Integer> individualAntData;
-    private int buttonID;
-    private int[] frameID;
+    int buttonID;
+    private static int[] frameID;
+    private static JLabel picLabel;
+
 
     public VideoPanel(){
+        System.out.println("Video panel constructor called");
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(200,100));
         setLayout(new BorderLayout());
@@ -132,20 +135,20 @@ public class VideoPanel extends JPanel {
 
         ImageIcon scaledImage = new ImageIcon(overlay.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
 
-        JLabel picLabel = new JLabel(scaledImage);
+        picLabel = new JLabel(scaledImage);
         add(picLabel);
         revalidate();
         repaint();
     }
 
-    void getPrevFrame(){
+    public static void getPrevFrame(){
         frameID[1]=frameID[0];
         if(frameID[0]>1){
             frameID[0] = frameID[0]-1;
         }
     }
 
-    void getNextFrame(){
+    public static void getNextFrame(){
         frameID[0] = frameID[1];
         if(frameID[1]<20){
             frameID[1]=frameID[1]+1;

@@ -10,10 +10,11 @@ import java.util.Objects;
 public class MenuVideo extends JPanel{
     private GridBagLayout vidlist; //video list
     private JButton vid1, vid2, vid3, vid4;
-    int vidID;
+    static int vidID;
 
 
     public MenuVideo(){
+        System.out.println("Menu video constructor called");
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         vidID = 1; // default open video 1
@@ -62,7 +63,7 @@ public class MenuVideo extends JPanel{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vidID = 1;
-                getVidID(vidID);
+                //getVidID(vidID);
             }
         });
 
@@ -70,7 +71,7 @@ public class MenuVideo extends JPanel{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vidID = 2;
-                getVidID(vidID);
+                //getVidID(vidID);
             }
         });
 
@@ -78,7 +79,7 @@ public class MenuVideo extends JPanel{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vidID = 3;
-                getVidID(vidID);
+                //getVidID(vidID);
             }
         });
 
@@ -86,16 +87,14 @@ public class MenuVideo extends JPanel{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 vidID = 4;
-                getVidID(vidID);
+                //getVidID(vidID);
             }
         });
-
-
     }
 
-    public int getVidID(int vidID){
-        //System.out.println(vidID);
-        return vidID;
+    public static String getVidID(){
+        String video = "vid_" + vidID;
+        return video;
     }
 
     public static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
