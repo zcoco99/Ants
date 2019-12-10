@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 The TalkServlet class is used to establish a connection with the
@@ -12,8 +13,9 @@ servlet and to submit the ant data to the servlet using POST
 */
 
 public class TalkServlet {
+    private static FBData dataFB;
     private static ArrayList<ArrayList<Integer>> antData;
-    //private static JPanel FBPanel;
+    private static boolean FBState;
 
     static void makeGetRequest(){
         try {
@@ -70,7 +72,9 @@ public class TalkServlet {
     }
 
     static void postFB(){
+        FBState=true;
         //Next or prev button clicked
+        System.out.println("postFB() called");
         HttpURLConnection conn = null;
         try{
             URL myURL = new URL("http://localhost:8080/AntsServlet/FBpage");
@@ -88,9 +92,8 @@ public class TalkServlet {
         FBData sendFBData = new FBData();
         boolean fb = FBPanel.getFBState();
         sendFBData.setFB(fb);
-        //System.out.println("FB state: " + sendFBData.getFB());
         sendFBData.setFrameID(1);
-        sendFBData.setVideoID("Video FBData");
+        sendFBData.setVideoID("vid_1");
         Gson sendGson = new Gson();
         String jsonString = sendGson.toJson(sendFBData);
         byte[] body = jsonString.getBytes(StandardCharsets.UTF_8);
@@ -107,15 +110,15 @@ public class TalkServlet {
             String inputLine;
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
-                FBData dataFB = inputGson.fromJson(inputLine, FBData.class);
-                System.out.println("Ant data:");
-                System.out.println(dataFB.getAntData());
-                System.out.println("Video ID:");
-                System.out.println(dataFB.getVideoID());
-                System.out.println("Frame ID:");
-                System.out.println(dataFB.getFrameID());
-                System.out.println("Image Byte:");
-                System.out.println(dataFB.getImageByte());
+                dataFB = inputGson.fromJson(inputLine, FBData.class);
+                /*System.out.println("Ant data:");
+                System.out.println(dataFB.getAntData());*/
+                //System.out.println("Video ID:");
+                //System.out.println(dataFB.getVideoID());
+                //System.out.println("doPost Frame ID:");
+                //System.out.println(dataFB.getFrameID());
+                //System.out.println("Image Byte:");
+                //System.out.println(Arrays.toString(dataFB.getImageByte()));
             }
             bufferedReader.close();
         } catch (IOException e) {
@@ -216,20 +219,24 @@ public class TalkServlet {
                 InitData initData = inputGson.fromJson(i, InitData.class);
                 initData.printInitData();
             }
-
             //System.out.println(initDataArrayList.get(0).getVideoID());
-
             System.out.println("test1");
-
-
-
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static FBData getFBData(){
+        return dataFB;
+    }
 
+    public static boolean getFBState(){
+        return FBState;
+    }
 
+    public static void setFBState(boolean state){
+        FBState = state;
     }
 
     public TalkServlet(){

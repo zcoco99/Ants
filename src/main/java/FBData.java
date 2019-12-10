@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class FBData {
@@ -23,7 +25,7 @@ public class FBData {
         return fb;
     }
 
-    public byte [] getImageByte(){return this.imageByte;}
+    public byte [] getImageByte(){return imageByte;}
 
     public void setVideoID(String videoID){
         this.videoID = videoID;

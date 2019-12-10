@@ -1,12 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /*
 The VideoPanel class is a JPanel that is used to display the frames of the
@@ -119,18 +120,22 @@ public class VideoPanel extends JPanel {
     }
 
     private void loadFrame(){
-        ImageIcon[] pic = new ImageIcon[frameID.length];
+        //System.out.println("loadFrame() called");
+        /*ImageIcon[] pic = new ImageIcon[frameID.length];
 
         pic[0] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[0]) + ".png")));
         pic[1] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[1]) + ".png")));
+        */
+        convertImageByte();
+        /*BufferedImage inputImage = convertImageByte();
 
-        BufferedImage overlay = new BufferedImage(pic[0].getIconWidth(), pic[1].getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage overlay = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = overlay.createGraphics();
 
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f));
-        g.drawImage(pic[0].getImage(),0,0,this);
+        g.drawImage(inputImage,0,0,this);
 
-        g.drawImage(pic[1].getImage(),0,0,this);
+        g.drawImage(inputImage,0,0,this);
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.99f));
 
         ImageIcon scaledImage = new ImageIcon(overlay.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
@@ -138,7 +143,31 @@ public class VideoPanel extends JPanel {
         picLabel = new JLabel(scaledImage);
         add(picLabel);
         revalidate();
-        repaint();
+        repaint();*/
+    }
+
+    public /*BufferedImage*/ void convertImageByte(/*byte[] imageByte*/){
+        /*System.out.println("convertImage() called");
+        //System.out.println(imageByte);
+        BufferedImage bImage = null;
+        byte[] imageData = FBData.getImageByte();
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        //return bImage;
+        //System.out.println("VidPanel dataFB:");
+        //System.out.println(TalkServlet.getFBData().getFrameID());
+        //byte[] imageByte = TalkServlet.getFBData().getImageByte();
+        //System.out.println("Image byte:");
+        //System.out.println(Arrays.toString(imageByte));
+        if(TalkServlet.getFBState()){
+            System.out.println("VidPanel: ");
+            System.out.println(TalkServlet.getFBData().getFrameID());
+        }
+        TalkServlet.setFBState(false);
     }
 
     public static void getPrevFrame(){
