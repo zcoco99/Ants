@@ -1,8 +1,11 @@
+package data_transfer;
+import panels.VideoPanel;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
-The SubmitData class is used to collect the necessary data to be sent
+The data_transfer.SubmitData class is used to collect the necessary data to be sent
 to the servlet
 */
 
@@ -16,7 +19,7 @@ public class SubmitData implements Serializable {
     }
 
     public void getData() {
-        antData = VideoPanel.getAntData();       //gets the ArrayList antData from VideoPanel
+        antData = VideoPanel.getAntData();       //gets the ArrayList antData from panels.VideoPanel
         videoID = "Video Submit Data1";
         frameID = 10;
         //videoID = videoIDReturn();

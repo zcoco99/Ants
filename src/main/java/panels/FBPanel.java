@@ -1,3 +1,7 @@
+package panels;
+
+import data_transfer.TalkServlet;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /*
-The FBPanel class is a JPanel that contains 3 buttons:
+The panels.FBPanel class is a JPanel that contains 3 buttons:
     1. Forward button to go to next frame of the video
     2. Back button to go to the previous frame of the video
     3. Submit button to submit the data to the servlet
@@ -19,7 +23,7 @@ public class FBPanel extends JPanel {
     private static boolean fb;          //false for previous button and true for next button
 
     public FBPanel(){
-        System.out.println("FBPanel constructor called");
+        //System.out.println("panels.FBPanel constructor called");
         videoPanel = new VideoPanel();
         setLayout(new GridLayout(1,3));
         nextButton = new JButton("Next");
@@ -46,10 +50,9 @@ public class FBPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
-                videoPanel.getNextFrame();
                 fb=true;
-                TalkServlet.postFB();
-                //PageHandler.getFrame3().setVisible(true);
+                //data_transfer.TalkServlet.postFB();
+                videoPanel.getNextFrame();
             }
         });
 
@@ -58,11 +61,9 @@ public class FBPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
-                videoPanel.getPrevFrame();
                 fb=false;
                 TalkServlet.postFB();
-                //PageHandler.getFrame3().setVisible(false);
-                //PageHandler.getFrame2().setVisible(true);
+                videoPanel.getPrevFrame();
             }
         });
     }

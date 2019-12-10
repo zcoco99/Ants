@@ -1,20 +1,24 @@
+package panels;
+
+import panels.FBPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
 /*
-The VideoFramesContainer class is a JPanel that is used to set the layout of
-the frames of the video (VideoPanel) and the forward, backward and submit
-buttons (FBPanel)
+The panels.VideoFramesContainer class is a JPanel that is used to set the layout of
+the frames of the video (panels.VideoPanel) and the forward, backward and submit
+buttons (panels.FBPanel)
 */
 
 public class VideoFramesContainer extends JPanel {
 
     public VideoFramesContainer(){
-        System.out.println("Video frames container constructor called");
-        setBackground(Color.red);
+        //System.out.println("Video frames container constructor called");
+        //setBackground(Color.red);
         setSize(250, 300);
 
-        setBackground(Color.orange);
+        //setBackground(Color.orange);
         setSize(250, 300);
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();

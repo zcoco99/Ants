@@ -1,15 +1,19 @@
+package panels;
+
+import panels.ButtonIDContainer;
+
 import javax.swing.*;
 import java.awt.*;
 
 /*
-The TrackingPage class is used to create a JFrame which has the main container
-for holding the ButtonIDContainer and VideoFramesContainer
+The panels.TrackingPage class is used to create a JFrame which has the main container
+for holding the panels.ButtonIDContainer and panels.VideoFramesContainer
 */
 
 public class TrackingPage extends JPanel{
 
     public TrackingPage() {
-        System.out.println("TrackingPage constructor called");
+        //System.out.println("panels.TrackingPage constructor called");
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 

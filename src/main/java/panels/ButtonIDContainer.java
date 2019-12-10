@@ -1,9 +1,11 @@
+package panels;
+
 import javax.swing.*;
 import java.awt.*;
 
 /*
-The ButtonIDContainer class is a JPanel that is used to set the layout of
-the + and - buttons (in ButtonPanel), and the ant buttons (in IDPanel)
+The panels.ButtonIDContainer class is a JPanel that is used to set the layout of
+the + and - buttons (in panels.ButtonPanel), and the ant buttons (in panels.IDPanel)
 */
 
 public class ButtonIDContainer extends JPanel {

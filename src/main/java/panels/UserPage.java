@@ -1,3 +1,7 @@
+package panels;
+
+import panels.LandingPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +19,7 @@ public class UserPage extends JPanel {
 
     public UserPage(){
         userpageFlag = false;
-        System.out.println("UserPage constructor called");
+        //System.out.println("panels.UserPage constructor called");
         user1 = new String();
         greet = new JLabel("<html> Welcome to Ants GUI <br/>Enter your name</html>");
 

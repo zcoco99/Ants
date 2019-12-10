@@ -1,3 +1,9 @@
+package panels;
+
+import data_transfer.FBData;
+import data_transfer.TalkServlet;
+import panels.ButtonPanel;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +16,7 @@ import java.util.*;
 import java.util.Timer;
 
 /*
-The VideoPanel class is a JPanel that is used to display the frames of the
+The panels.VideoPanel class is a JPanel that is used to display the frames of the
 video. The panel also has a mouse listener to track the coordinates of the
 ant, which is then stored in an ArrayList called antData
 */
@@ -24,10 +30,10 @@ public class VideoPanel extends JPanel {
     private ArrayList<Integer> individualAntData;
     private int buttonID;
     private static int[] frameID;
-
+    private FBData dataFB;
 
     public VideoPanel(){
-        System.out.println("Video panel constructor called");
+        //System.out.println("Video panel constructor called");
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(200,113));
         setLayout(new BorderLayout());
@@ -123,48 +129,55 @@ public class VideoPanel extends JPanel {
         pic[0] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[0]) + ".png")));
         pic[1] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[1]) + ".png")));
         */
-        convertImageByte();
-        /*BufferedImage inputImage = convertImageByte();
 
-        BufferedImage overlay = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage inputImage = convertImageByte();
+        /*BufferedImage inputImage2 = new BufferedImage(inputImage, BufferedImage.TYPE_INT_ARGB);
+        System.out.println("Input image:");
+        System.out.println(inputImage);
+        data_transfer.TalkServlet.setFBState(false);*/
+
+        /*BufferedImage inputImage=new BufferedImage(500, 500, BufferedImage.TYPE_INT_ARGB);
+        byte[] imageBytes = ((DataBufferByte) inputImage.getData().getDataBuffer()).getData();
+        System.out.println(imageBytes);*/
+
+        /*BufferedImage overlay = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = overlay.createGraphics();
 
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f));
         g.drawImage(inputImage,0,0,this);
 
         g.drawImage(inputImage,0,0,this);
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.99f));
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.99f));*/
 
-        ImageIcon scaledImage = new ImageIcon(overlay.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
+        //System.out.println(getWidth());
+        //Graphics2D g = inputImage.createGraphics();
+        //g.drawImage(inputImage,0,0,this);
+        //ImageIcon scaledImage = new ImageIcon(inputImage);//.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
 
-        JLabel picLabel = new JLabel(scaledImage);
-        add(picLabel);
+
+        //JLabel picLabel = new JLabel(scaledImage);
+        //add(picLabel);
         revalidate();
-        repaint();*/
+        repaint();
     }
 
-    public /*BufferedImage*/ void convertImageByte(/*byte[] imageByte*/){
-        /*System.out.println("convertImage() called");
-        //System.out.println(imageByte);
+    public BufferedImage convertImageByte(){
+        //System.out.println("convert() called");
         BufferedImage bImage = null;
-        byte[] imageData = FBData.getImageByte();
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-        try {
-            bImage = ImageIO.read(bis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        //return bImage;
-        //System.out.println("VidPanel dataFB:");
-        //System.out.println(TalkServlet.getFBData().getFrameID());
-        //byte[] imageByte = TalkServlet.getFBData().getImageByte();
-        //System.out.println("Image byte:");
-        //System.out.println(Arrays.toString(imageByte));
-        if(TalkServlet.getFBState()){
-            System.out.println("VidPanel: ");
-            System.out.println(TalkServlet.getFBData().getFrameID());
-        }
-        TalkServlet.setFBState(false);
+        //if(data_transfer.TalkServlet.getFBState()){
+            dataFB = TalkServlet.getFBData();
+            //System.out.println("VidPanel: ");
+            //System.out.println(Arrays.toString(dataFB.getImageByte()));
+            ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getImageByte());
+            try {
+                bImage = ImageIO.read(bis);
+                /*ImageIO.write(bImage,"png",new File("testpicture.png"));
+                System.out.println("Image created");*/
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        //}
+        return bImage;
     }
 
     static void getPrevFrame(){

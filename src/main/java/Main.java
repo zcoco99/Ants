@@ -1,9 +1,10 @@
-import javax.swing.*;
+import panels.*;
+
 import java.awt.*;
 
 /*
 The Main class is used to create a JFrame which has the main container
-for holding the ButtonIDContainer and VideoFramesContainer
+for holding the panels.ButtonIDContainer and panels.VideoFramesContainer
 */
 
 public class Main {

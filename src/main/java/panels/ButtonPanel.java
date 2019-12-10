@@ -1,10 +1,12 @@
+package panels;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /*
-The ButtonPanel class is a JPanel that is used to display the
+The panels.ButtonPanel class is a JPanel that is used to display the
 + and - buttons which each have an action listener
 */
 
@@ -20,7 +22,7 @@ public class ButtonPanel extends JPanel {
     private int count=0;        //tracks the ant ID
 
     public ButtonPanel(){
-        //System.out.println("ButtonPanel constructor called");
+        //System.out.println("panels.ButtonPanel constructor called");
         addButton = new JButton("+");
         minusButton = new JButton("-");
         backButton = new JButton("Back");

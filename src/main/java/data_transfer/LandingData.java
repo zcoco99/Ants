@@ -1,3 +1,5 @@
+package data_transfer;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;

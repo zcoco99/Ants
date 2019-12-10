@@ -1,20 +1,20 @@
+package data_transfer;
+
 import com.google.gson.Gson;
+import panels.FBPanel;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /*
-The TalkServlet class is used to establish a connection with the
+The data_transfer.TalkServlet class is used to establish a connection with the
 servlet and to submit the ant data to the servlet using POST
 */
 
 public class TalkServlet {
     private static FBData dataFB;
-    private static ArrayList<ArrayList<Integer>> antData;
     private static boolean FBState;
 
     static void makeGetRequest(){
@@ -36,7 +36,7 @@ public class TalkServlet {
         }
     }
 
-    static void postSubmit() throws IOException {
+    public static void postSubmit() throws IOException {
         //Submit button
         SubmitData submitData = new SubmitData();
         Gson gson = new Gson();
@@ -71,10 +71,8 @@ public class TalkServlet {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
     }
 
-    static void postFB(){
-        FBState=true;
+    public static void postFB(){
         //Next or prev button clicked
-        System.out.println("postFB() called");
         HttpURLConnection conn = null;
         try{
             URL myURL = new URL("http://localhost:8080/AntsServlet/FBpage");
@@ -115,7 +113,7 @@ public class TalkServlet {
                 System.out.println(dataFB.getAntData());*/
                 //System.out.println("Video ID:");
                 //System.out.println(dataFB.getVideoID());
-                //System.out.println("doPost Frame ID:");
+                //System.out.println("doPost:");
                 //System.out.println(dataFB.getFrameID());
                 //System.out.println("Image Byte:");
                 //System.out.println(Arrays.toString(dataFB.getImageByte()));
@@ -124,11 +122,12 @@ public class TalkServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        FBState=true;
     }
 
-    static void postLanding(){
+    public static void postLanding(){/*
         //transitioning button
-        String videoID = MenuVideo.getVidID();
+        String videoID = panels.MenuVideo.getVidID();
         byte[] body = videoID.getBytes(StandardCharsets.UTF_8);
 
         HttpURLConnection conn = null;
@@ -156,7 +155,7 @@ public class TalkServlet {
             String inputLine;
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
-                LandingData landingData = inputGson.fromJson(inputLine, LandingData.class);
+                data_transfer.LandingData landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
                 System.out.println("Ant data:");
                 System.out.println(landingData.getAntData());
                 System.out.println("Video ID:");
@@ -169,15 +168,15 @@ public class TalkServlet {
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
-    static void postInit(){
+    static void postInit(){/*
 
         String initString = "Hi init page";
         byte[] body = initString.getBytes(StandardCharsets.UTF_8);
 
-        InitDataArrayList initDataArrayList = new InitDataArrayList();
+        data_transfer.InitDataArrayList initDataArrayList = new data_transfer.InitDataArrayList();
 
         HttpURLConnection conn = null;
         try{
@@ -205,7 +204,7 @@ public class TalkServlet {
             while((inputLine = bufferedReader.readLine()) != null) {
 
                 Gson inputGson = new Gson();
-                initDataArrayList = inputGson.fromJson(inputLine, InitDataArrayList.class);
+                initDataArrayList = inputGson.fromJson(inputLine, data_transfer.InitDataArrayList.class);
             }
 
             System.out.println(initDataArrayList);
@@ -216,7 +215,7 @@ public class TalkServlet {
 
             for(String i : jsonStringArray){
                 Gson inputGson = new Gson();
-                InitData initData = inputGson.fromJson(i, InitData.class);
+                data_transfer.InitData initData = inputGson.fromJson(i, data_transfer.InitData.class);
                 initData.printInitData();
             }
             //System.out.println(initDataArrayList.get(0).getVideoID());
@@ -224,7 +223,7 @@ public class TalkServlet {
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public static FBData getFBData(){

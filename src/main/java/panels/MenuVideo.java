@@ -1,3 +1,5 @@
+package panels;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ public class MenuVideo extends JPanel{
 
 
     public MenuVideo(){
-        System.out.println("Menu video constructor called");
+        //System.out.println("Menu video constructor called");
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         vidID = 1; // default open video 1
