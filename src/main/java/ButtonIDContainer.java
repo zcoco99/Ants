@@ -1,14 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 
+/*
+The ButtonIDContainer class is a JPanel that is used to set the layout of
+the + and - buttons (in ButtonPanel), and the ant buttons (in IDPanel)
+*/
+
 public class ButtonIDContainer extends JPanel {
     private IDPanel idPanel;
 
     public ButtonIDContainer(){
-        idPanel = new IDPanel();
-        idPanel = (IDPanel) ButtonPanel.idPanelReturn();
-        setBackground(Color.orange);
-        setSize(250, 300);
+        idPanel = (IDPanel) ButtonPanel.getIDPanel();
+        setSize(250,300);
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 

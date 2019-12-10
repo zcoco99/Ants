@@ -1,8 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 
+/*
+The VideoFramesContainer class is a JPanel that is used to set the layout of
+the frames of the video (VideoPanel) and the forward, backward and submit
+buttons (FBPanel)
+*/
+
 public class VideoFramesContainer extends JPanel {
+
     public VideoFramesContainer(){
+        System.out.println("Video frames container constructor called");
         setBackground(Color.red);
         setSize(250, 300);
 
