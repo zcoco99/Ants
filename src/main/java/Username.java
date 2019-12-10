@@ -3,16 +3,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class username extends JFrame
+public class Username extends JFrame
 {
+
     //Variables to be used in all functions
     private JButton startbtn;
     private JLabel greet;
-    JTextField username;
-    Font font = new Font("Comic Sans MS",NORMAL, 30);
+    private JTextField username;
+    private Font font = new Font("Comic Sans MS",NORMAL, 30);
+    private VideoMenu vidMenu;
     static String user1;
 
-    public username(){
+    public Username(){
         user1 = new String();
         greet = new JLabel("<html> Welcome to Ants GUI <br/>Enter your name</html>");
         // greet.setFont(font);
@@ -35,9 +37,6 @@ public class username extends JFrame
                 nameReturn(); // print user input on terminal
             }
         };
-        // add action to button
-        startbtn.addActionListener(whatsmyname); // username will be
-        startbtn.addActionListener(actionEvent -> new VideoMenu());  // open new menu frame
 
         // add components
         GridBagConstraints c = new GridBagConstraints();
@@ -63,10 +62,22 @@ public class username extends JFrame
         c.weighty= 1;
         add(startbtn ,c);
 
-        setVisible(true);
-        setSize(500,300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // add action to button
+        startbtn.addActionListener(whatsmyname); // username will be
+        vidMenu = new VideoMenu();
+        startbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                add(vidMenu,c);
+                revalidate();
+                repaint();
+            }
+        });  // open new menu frame
 
+        setVisible(true);
+        setSize(600,500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static String nameReturn(){

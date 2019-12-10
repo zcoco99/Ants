@@ -33,19 +33,12 @@ public class VideoPanel extends JPanel {
     private void loadFrame() {
 
         //Initializing arrays to hold two path names
-        String[] file_name = new String[frameID.length];
         String[] path = new String[frameID.length];
         ImageIcon[] pic = new ImageIcon[frameID.length];
 
-        //1st image
-        file_name[0]=String.format("%05d",frameID[0]);
-        path[0]="./vid_1/" + file_name[0] + ".png";
-        pic[0] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(path[0])));
-
-        //2nd image
-        file_name[1]=String.format("%05d",frameID[1]);
-        path[1]="./vid_1/" + file_name[1] + ".png";
-        pic[1] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(path[1])));
+        //Loading images
+        pic[0] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[0]) + ".png")));
+        pic[1] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[1]) + ".png")));
 
         //Overlay images
         BufferedImage overlay = new BufferedImage(pic[0].getIconWidth(), pic[1].getIconHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -58,8 +51,7 @@ public class VideoPanel extends JPanel {
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.99f));
 
         //Scaling overlaid images
-        Image scaling = overlay.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT);
-        ImageIcon scaledImage = new ImageIcon(scaling);
+        ImageIcon scaledImage = new ImageIcon(overlay.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
 
         picLabel = new JLabel(scaledImage);
         add(picLabel);
@@ -83,6 +75,5 @@ public class VideoPanel extends JPanel {
         if(frameID[1]<20) {
             frameID[1] = frameID[1] + 1;
         }
-
-    };
+    }
 }
