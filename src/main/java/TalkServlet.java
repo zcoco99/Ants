@@ -34,7 +34,7 @@ public class TalkServlet {
         }
     }
 
-    static void postSubmit() throws IOException {
+    static void postSubmit() throws IOException {/*
         //Submit button
         SubmitData submitData = new SubmitData();
         Gson gson = new Gson();
@@ -66,10 +66,10 @@ public class TalkServlet {
         try (OutputStream outputStream = conn.getOutputStream()) {
             outputStream.write(body, 0, body.length);
         }
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));*/
     }
 
-    static void postFB(){
+    static void postFB(){/*
         //Next or prev button clicked
         HttpURLConnection conn = null;
         try{
@@ -120,10 +120,10 @@ public class TalkServlet {
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
-    static void postLanding(){
+    static void postLanding(){/*
         //transitioning button
         String videoID = MenuVideo.getVidID();
         byte[] body = videoID.getBytes(StandardCharsets.UTF_8);
@@ -166,11 +166,11 @@ public class TalkServlet {
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     static void postInit(){
-
+/*
         String initString = "Hi init page";
         byte[] body = initString.getBytes(StandardCharsets.UTF_8);
 
@@ -226,7 +226,7 @@ public class TalkServlet {
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 

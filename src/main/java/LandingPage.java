@@ -55,7 +55,7 @@ class LandingPage extends JPanel {
                 //PageHandler.getFrame3().setVisible(true);
                 TalkServlet.postLanding();
                 landingFlag=true;
-                new PageHandler();
+                //new PageHandler();
             }
         });
     }

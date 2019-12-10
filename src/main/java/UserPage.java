@@ -65,7 +65,7 @@ public class UserPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 userpageFlag=true;
-                new PageHandler();
+                //new PageHandler();
                 //PageHandler.getFrame1().setVisible(false);
                 //PageHandler.getFrame2().setVisible(true);
                 //CardLayout c1 = (CardLayout) PageHandler.cards.getLayout();
