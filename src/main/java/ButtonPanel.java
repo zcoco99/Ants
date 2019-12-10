@@ -17,6 +17,7 @@ public class ButtonPanel extends JPanel {
     private int count=0;        //tracks the ant ID
 
     public ButtonPanel(){
+        System.out.println("ButtonPanel constructor called");
         addButton = new JButton("+");
         minusButton = new JButton("-");
 

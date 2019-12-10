@@ -11,8 +11,11 @@ public class UserPage extends JPanel {
     //private Font font = new Font("Comic Sans MS",NORMAL, 30);
     private LandingPage vidMenu;
     static String user1;
+    private static boolean userpageFlag;
 
     public UserPage(){
+        userpageFlag = false;
+        System.out.println("UserPage constructor called");
         user1 = new String();
         greet = new JLabel("<html> Welcome to Ants GUI <br/>Enter your name</html>");
 
@@ -61,8 +64,12 @@ public class UserPage extends JPanel {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PageHandler.getFrame1().setVisible(false);
-                PageHandler.getFrame2().setVisible(true);
+                userpageFlag=true;
+                new PageHandler();
+                //PageHandler.getFrame1().setVisible(false);
+                //PageHandler.getFrame2().setVisible(true);
+                //CardLayout c1 = (CardLayout) PageHandler.cards.getLayout();
+                //c1.show(PageHandler.cards, String.valueOf(PageHandler.card2));
             }
         });
     }
@@ -70,5 +77,13 @@ public class UserPage extends JPanel {
     public static String nameReturn(){
         System.out.println(user1);
         return user1;
+    }
+
+    public static boolean getUserFlag(){
+        return userpageFlag;
+    }
+
+    public static void setUserFlag(boolean state){
+        userpageFlag = state;
     }
 }

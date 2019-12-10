@@ -19,6 +19,7 @@ public class FBPanel extends JPanel {
     private static boolean fb;          //false for previous button and true for next button
 
     public FBPanel(){
+        System.out.println("FBPanel constructor called");
         videoPanel = new VideoPanel();
         setLayout(new GridLayout(1,3));
         nextButton = new JButton("Next");
@@ -48,6 +49,7 @@ public class FBPanel extends JPanel {
                 VideoPanel.getNextFrame();
                 fb=true;
                 TalkServlet.postFB();
+                //PageHandler.getFrame3().setVisible(true);
             }
         });
 
@@ -59,6 +61,8 @@ public class FBPanel extends JPanel {
                 VideoPanel.getPrevFrame();
                 fb=false;
                 TalkServlet.postFB();
+                //PageHandler.getFrame3().setVisible(false);
+                //PageHandler.getFrame2().setVisible(true);
             }
         });
     }
@@ -67,7 +71,7 @@ public class FBPanel extends JPanel {
         return fb;
     }
 
-    public JPanel returnVideoPanel(){
+    public VideoPanel returnVideoPanel(){
         return videoPanel;
     }
 }

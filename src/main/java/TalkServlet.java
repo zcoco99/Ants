@@ -125,7 +125,7 @@ public class TalkServlet {
 
     static void postLanding(){
         //transitioning button
-        String videoID = "vid_1";
+        String videoID = MenuVideo.getVidID();
         byte[] body = videoID.getBytes(StandardCharsets.UTF_8);
 
         HttpURLConnection conn = null;

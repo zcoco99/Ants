@@ -10,6 +10,7 @@ buttons (FBPanel)
 public class VideoFramesContainer extends JPanel {
 
     public VideoFramesContainer(){
+        System.out.println("Video frames container constructor called");
         setBackground(Color.red);
         setSize(250, 300);
 
