@@ -12,18 +12,25 @@ public class ButtonPanel extends JPanel {
     private static JButton lastButton;
     private JButton addButton;
     private JButton minusButton;
+    private JButton backButton;
+    private static boolean backFlag;
+    private JPanel organiserPanel = new JPanel();
     static IDPanel idPanel = new IDPanel();
 
     private int count=0;        //tracks the ant ID
 
     public ButtonPanel(){
-        System.out.println("ButtonPanel constructor called");
+        //System.out.println("ButtonPanel constructor called");
         addButton = new JButton("+");
         minusButton = new JButton("-");
+        backButton = new JButton("Back");
 
-        setLayout(new GridLayout(1,2));
-        add(addButton);
-        add(minusButton);
+        setLayout(new GridLayout(2,1));
+        add(backButton);
+        organiserPanel.setLayout(new GridLayout(1,0));
+        organiserPanel.add(addButton);
+        organiserPanel.add(minusButton);
+        add(organiserPanel);
 
         addButton.addActionListener(new ActionListener() {
             //When addButton is clicked, add a new ant button
@@ -56,6 +63,15 @@ public class ButtonPanel extends JPanel {
                 lastButton = null;
             }
         });
+
+        backButton.addActionListener(new ActionListener() {
+            //When minusButton is clicked, remove the last clicked button
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backFlag=true;
+            }
+        });
+
     }
 
     //Function for ID panel object to be accessed in other classes
@@ -69,6 +85,14 @@ public class ButtonPanel extends JPanel {
             return null;
         }
         return lastButton;
+    }
+
+    public static boolean getBackFlag(){
+        return backFlag;
+    }
+
+    public static void setBackFlag(boolean state){
+        backFlag=state;
     }
 }
 
