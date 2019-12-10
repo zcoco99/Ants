@@ -7,7 +7,6 @@ for holding the ButtonIDContainer and VideoFramesContainer
 */
 
 public class Main {
-
     public static void main(String[] args) {
         new PageHandler();
     }

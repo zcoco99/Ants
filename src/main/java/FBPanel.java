@@ -45,7 +45,7 @@ public class FBPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
-                VideoPanel.getNextFrame();
+                videoPanel.getNextFrame();
                 fb=true;
                 TalkServlet.postFB();
             }
@@ -56,7 +56,7 @@ public class FBPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
-                VideoPanel.getPrevFrame();
+                videoPanel.getPrevFrame();
                 fb=false;
                 TalkServlet.postFB();
             }
