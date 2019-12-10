@@ -46,13 +46,15 @@ public class VideoPanel extends JPanel {
         init.add(0);
         antData.add(init);
 
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                removeAll();
-                loadFrame();
-            }
-        }, 500,500);
+        if(FBPanel.getFrameID()>0) {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    removeAll();
+                    loadFrame();
+                }
+            }, 500, 500);
+        }
 
         addMouseListener(new MouseListener() {
             @Override
@@ -122,61 +124,52 @@ public class VideoPanel extends JPanel {
         individualAntData.add(y_coordinate);
     }
 
-    private void loadFrame(){
+    public void loadFrame(){
         //System.out.println("loadFrame() called");
-        /*ImageIcon[] pic = new ImageIcon[frameID.length];
-
-        pic[0] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[0]) + ".png")));
-        pic[1] = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("./vid_1/" + String.format("%05d",frameID[1]) + ".png")));
-        */
+        removeAll();
 
         BufferedImage inputImage = convertImageByte();
-        /*BufferedImage inputImage2 = new BufferedImage(inputImage, BufferedImage.TYPE_INT_ARGB);
-        System.out.println("Input image:");
-        System.out.println(inputImage);
-        data_transfer.TalkServlet.setFBState(false);*/
+        BufferedImage inputImage2 = convertFBImageByte();
+        //System.out.println(inputImage);
+        //System.out.println(inputImage2);
+        Graphics2D g = inputImage.createGraphics();
 
-        /*BufferedImage inputImage=new BufferedImage(500, 500, BufferedImage.TYPE_INT_ARGB);
-        byte[] imageBytes = ((DataBufferByte) inputImage.getData().getDataBuffer()).getData();
-        System.out.println(imageBytes);*/
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        g.drawImage(inputImage, 0, 0, this);
 
-        /*BufferedImage overlay = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = overlay.createGraphics();
+        g.drawImage(inputImage2, 0, 0, this);
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.99f));
 
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f));
-        g.drawImage(inputImage,0,0,this);
+        ImageIcon scaledImage = new ImageIcon(inputImage.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
 
-        g.drawImage(inputImage,0,0,this);
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.99f));*/
-
-        //System.out.println(getWidth());
-        //Graphics2D g = inputImage.createGraphics();
-        //g.drawImage(inputImage,0,0,this);
-        //ImageIcon scaledImage = new ImageIcon(inputImage);//.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
-
-
-        //JLabel picLabel = new JLabel(scaledImage);
-        //add(picLabel);
+        JLabel picLabel = new JLabel(scaledImage);
+        add(picLabel);
         revalidate();
         repaint();
     }
 
-    public BufferedImage convertImageByte(){
-        //System.out.println("convert() called");
+    private BufferedImage convertImageByte(){
         BufferedImage bImage = null;
-        //if(data_transfer.TalkServlet.getFBState()){
-            dataFB = TalkServlet.getFBData();
-            //System.out.println("VidPanel: ");
-            //System.out.println(Arrays.toString(dataFB.getImageByte()));
+        dataFB = TalkServlet.getFBData();
+        System.out.println("Current: " + dataFB.getFrameID());
             ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getImageByte());
             try {
                 bImage = ImageIO.read(bis);
-                /*ImageIO.write(bImage,"png",new File("testpicture.png"));
-                System.out.println("Image created");*/
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        //}
+        return bImage;
+    }
+
+    private BufferedImage convertFBImageByte(){
+        BufferedImage bImage = null;
+        dataFB = TalkServlet.getFBData();
+        ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getFBImageByte());
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return bImage;
     }
 

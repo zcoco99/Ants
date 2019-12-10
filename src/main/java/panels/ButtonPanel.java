@@ -44,6 +44,12 @@ public class ButtonPanel extends JPanel {
                     //When ant button is clicked, save it as lastButton
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        /*if(btn != lastButton){
+                            if(lastButton!=null){
+                                btn.setBackground(new Color(237,242,248,90));
+                                lastButton.setBackground(null);
+                            }
+                        }*/
                         lastButton = btn;
                     }
                 });

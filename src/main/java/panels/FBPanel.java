@@ -1,5 +1,6 @@
 package panels;
 
+import data_transfer.FBData;
 import data_transfer.TalkServlet;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class FBPanel extends JPanel {
     private JButton submitButton;       //submits the ants coordinates
     private VideoPanel videoPanel;
     private static boolean fb;          //false for previous button and true for next button
+    private static int frameID;
 
     public FBPanel(){
         //System.out.println("panels.FBPanel constructor called");
@@ -32,6 +34,7 @@ public class FBPanel extends JPanel {
         add(prevButton);
         add(nextButton);
         add(submitButton);
+        frameID = 1;
 
         submitButton.addActionListener(new ActionListener() {
             //When submitButton is clicked, submit data to servlet
@@ -51,8 +54,10 @@ public class FBPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
                 fb=true;
-                //data_transfer.TalkServlet.postFB();
-                videoPanel.getNextFrame();
+                frameID++;
+                //FBData.setFrameID(FBData.getFrameID()+1);
+                data_transfer.TalkServlet.postFB();
+                videoPanel.loadFrame();
             }
         });
 
@@ -62,8 +67,9 @@ public class FBPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //send servlet the current frame and video
                 fb=false;
-                TalkServlet.postFB();
-                videoPanel.getPrevFrame();
+                frameID--;
+                data_transfer.TalkServlet.postFB();
+                videoPanel.loadFrame();
             }
         });
     }
@@ -74,5 +80,9 @@ public class FBPanel extends JPanel {
 
     public VideoPanel returnVideoPanel(){
         return videoPanel;
+    }
+
+    public static int getFrameID(){
+        return frameID;
     }
 }

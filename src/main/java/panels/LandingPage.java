@@ -1,5 +1,6 @@
 package panels;
 
+import data_transfer.FBData;
 import data_transfer.TalkServlet;
 
 import javax.swing.*;
@@ -50,7 +51,7 @@ public class LandingPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 TalkServlet.postLanding();
-                TalkServlet.postFB();
+                //TalkServlet.postFB();
                 landingFlag=true;
             }
         });

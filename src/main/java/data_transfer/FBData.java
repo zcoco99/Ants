@@ -1,15 +1,19 @@
 package data_transfer;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class FBData {
     private ArrayList<ArrayList<Integer>> antData;
     private String videoID;
+    private static int tempFrameID;
     private int frameID;
-    private byte [] imageByte;
+    private byte[] imageByte;
+    private byte[] FBImageByte;
     private boolean fb;
+
+    public FBData(){
+        tempFrameID = 1;
+    }
 
     public ArrayList<ArrayList<Integer>> getAntData() {
         return antData;
@@ -19,8 +23,16 @@ public class FBData {
         return videoID;
     }
 
+    public static int getTempFrameID(){
+        return tempFrameID;
+    }
+
     public int getFrameID(){
         return frameID;
+    }
+
+    public void setFrameID(){
+        this.frameID = getTempFrameID();
     }
 
     public boolean getFB(){
@@ -29,18 +41,26 @@ public class FBData {
 
     public byte [] getImageByte(){return imageByte;}
 
+    public byte[] getFBImageByte(){
+        return this.FBImageByte;
+    }
+
     public void setVideoID(String videoID){
         this.videoID = videoID;
     }
 
-    public void setFrameID(int frameID){
-        this.frameID = frameID;
+    public static void setTempFrameID(int IDframe){
+        tempFrameID = IDframe;
     }
 
     public void setFB(boolean fb){
         this.fb=fb;
     }
 
-    public void setImageByte(byte [] imageByteInput){this.imageByte = imageByteInput;}
+    public void setImageByte(byte[] imageByteInput){this.imageByte = imageByteInput;}
+
+    public void setFBImageByte(byte[] imageByteInput){
+        FBImageByte = imageByteInput;
+    }
 }
 
