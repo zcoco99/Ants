@@ -1,5 +1,6 @@
 package panels;
 
+import data_transfer.TalkServlet;
 import panels.LandingPage;
 
 import javax.swing.*;
@@ -69,6 +70,7 @@ public class UserPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 userpageFlag=true;
+                TalkServlet.postInit();
             }
         });
     }

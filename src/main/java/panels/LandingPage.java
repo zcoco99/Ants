@@ -51,7 +51,6 @@ public class LandingPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 TalkServlet.postLanding();
-                //TalkServlet.postFB();
                 landingFlag=true;
             }
         });

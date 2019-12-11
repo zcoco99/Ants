@@ -24,8 +24,6 @@ public class MenuVideo extends JPanel{
     BufferedImage bImage;
 
     public MenuVideo(){
-        TalkServlet.postInit();
-
         /*bImage = null;
         initData = TalkServlet.getInitData();
         ByteArrayInputStream bis = new ByteArrayInputStream(initData.getImageByte());

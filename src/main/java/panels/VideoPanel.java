@@ -1,6 +1,7 @@
 package panels;
 
 import data_transfer.FBData;
+import data_transfer.LandingData;
 import data_transfer.TalkServlet;
 import panels.ButtonPanel;
 
@@ -31,6 +32,7 @@ public class VideoPanel extends JPanel {
     private int buttonID;
     private static int[] frameID;
     private FBData dataFB;
+    private LandingData landingData;
 
     public VideoPanel(){
         //System.out.println("Video panel constructor called");
@@ -46,6 +48,26 @@ public class VideoPanel extends JPanel {
         init.add(0);
         antData.add(init);
 
+        /*
+        BufferedImage initialImage = initialImage();
+        BufferedImage overlayImage = initialOverlayImage();
+        Graphics2D g = initialImage.createGraphics();
+
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        g.drawImage(initialImage, 0, 0, this);
+
+        g.drawImage(overlayImage, 0, 0, this);
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.99f));
+
+        ImageIcon scaledImage = new ImageIcon(initialImage.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
+
+        JLabel picLabel = new JLabel(scaledImage);
+        add(picLabel);
+        revalidate();
+        repaint();
+        */
+
+        /*
         if(FBPanel.getFrameID()>0) {
             new Timer().schedule(new TimerTask() {
                 @Override
@@ -54,7 +76,7 @@ public class VideoPanel extends JPanel {
                     loadFrame();
                 }
             }, 500, 500);
-        }
+        }*/
 
         addMouseListener(new MouseListener() {
             @Override
@@ -140,6 +162,8 @@ public class VideoPanel extends JPanel {
         g.drawImage(inputImage2, 0, 0, this);
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.99f));
 
+        //System.out.println("Width: " + getWidth());
+        //System.out.println("Height: " + getHeight());
         ImageIcon scaledImage = new ImageIcon(inputImage.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
 
         JLabel picLabel = new JLabel(scaledImage);
@@ -164,7 +188,22 @@ public class VideoPanel extends JPanel {
     private BufferedImage convertFBImageByte(){
         BufferedImage bImage = null;
         dataFB = TalkServlet.getFBData();
-        ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getFBImageByte());
+        if(dataFB.getFBImageByte()!=null) {
+            ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getFBImageByte());
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bImage;
+    }
+
+    /*
+    private BufferedImage initialImage(){
+        BufferedImage bImage = null;
+        landingData = TalkServlet.getLandingData();
+        ByteArrayInputStream bis = new ByteArrayInputStream(landingData.getImageByte());
         try {
             bImage = ImageIO.read(bis);
         } catch (IOException e) {
@@ -173,17 +212,17 @@ public class VideoPanel extends JPanel {
         return bImage;
     }
 
-    static void getPrevFrame(){
-        frameID[1]=frameID[0];
-        if(frameID[0]>1){
-            frameID[0] = frameID[0]-1;
+    private BufferedImage initialOverlayImage(){
+        BufferedImage bImage = null;
+        landingData = TalkServlet.getLandingData();
+        if(landingData.getOverlayImageByte()!=null) {
+            ByteArrayInputStream bis = new ByteArrayInputStream(landingData.getOverlayImageByte());
+            try {
+                bImage = ImageIO.read(bis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    static void getNextFrame(){
-        frameID[0] = frameID[1];
-        if(frameID[1]<20){
-            frameID[1]=frameID[1]+1;
-        }
-    }
+        return bImage;
+    }*/
 }

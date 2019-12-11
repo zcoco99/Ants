@@ -9,6 +9,7 @@ public class LandingData {
     private String videoID;
     private int frameID;
     private byte [] imageByte;
+    private byte[] overlayImageByte;
 
     public ArrayList<ArrayList<Integer>> getAntData() {
         return antData;
@@ -23,6 +24,10 @@ public class LandingData {
     }
 
     public byte [] getImageByte(){return this.imageByte;}
+
+    public byte[] getOverlayImageByte(){
+        return this.overlayImageByte;
+    }
 
     public void setVideoID(String videoID){
         this.videoID = videoID;
@@ -44,6 +49,10 @@ public class LandingData {
 //        }
     }
 
-    public void setImageByte(byte [] imageByteInput){this.imageByte = imageByteInput;}
+    public void setImageByte(byte[] imageByteInput){this.imageByte = imageByteInput;}
+
+    public void setOverlayImageByte(byte[] imageByteInput){
+        this.overlayImageByte = imageByteInput;
+    }
 }
 

@@ -2,6 +2,7 @@ package data_transfer;
 
 import com.google.gson.Gson;
 import panels.FBPanel;
+import panels.MenuVideo;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -16,6 +17,7 @@ servlet and to submit the ant data to the servlet using POST
 public class TalkServlet {
     private static FBData dataFB;
     private static InitData initData;
+    private static LandingData landingData;
     private static boolean FBState;
 
     static void makeGetRequest(){
@@ -74,6 +76,7 @@ public class TalkServlet {
 
     public static void postFB(){
         //Next or prev button clicked
+        //Database: antData
         HttpURLConnection conn = null;
         try{
             URL myURL = new URL("http://localhost:8080/AntsServlet/FBpage");
@@ -91,11 +94,12 @@ public class TalkServlet {
         FBData sendFBData = new FBData();
         boolean fb = FBPanel.getFBState();
         int frameID = FBPanel.getFrameID();
+        String videoID = MenuVideo.getVidID();
         FBData.setTempFrameID(frameID);
 
         sendFBData.setFB(fb);
         sendFBData.setFrameID();
-        sendFBData.setVideoID("vid_1");
+        sendFBData.setVideoID(videoID); //servlet need to change filepath
 
         //System.out.println("FB state:");
         //System.out.println(sendFBData.getFB());
@@ -139,6 +143,7 @@ public class TalkServlet {
 
     public static void postLanding(){/*
         //transitioning button
+        //Database: antData, frameID
         String videoID = panels.MenuVideo.getVidID();
         byte[] body = videoID.getBytes(StandardCharsets.UTF_8);
 
@@ -167,7 +172,7 @@ public class TalkServlet {
             String inputLine;
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
-                LandingData landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
+                landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
                 //System.out.println("Ant data:");
                 //System.out.println(landingData.getAntData());
                 //System.out.println("Video ID:");
@@ -184,6 +189,7 @@ public class TalkServlet {
     }
 
     public static void postInit(){
+        //Database: progress bar
         HttpURLConnection conn = null;
         try{
             URL myURL = new URL("http://localhost:8080/AntsServlet/init");
@@ -278,6 +284,10 @@ public class TalkServlet {
 
     public static InitData getInitData(){
         return initData;
+    }
+
+    public static LandingData getLandingData(){
+        return landingData;
     }
 
     public static boolean getFBState(){
