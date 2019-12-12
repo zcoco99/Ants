@@ -48,7 +48,6 @@ public class VideoPanel extends JPanel {
         init.add(0);
         antData.add(init);
 
-        /*
         BufferedImage initialImage = initialImage();
         BufferedImage overlayImage = initialOverlayImage();
         Graphics2D g = initialImage.createGraphics();
@@ -59,13 +58,13 @@ public class VideoPanel extends JPanel {
         g.drawImage(overlayImage, 0, 0, this);
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.99f));
 
-        ImageIcon scaledImage = new ImageIcon(initialImage.getScaledInstance(getWidth(),getHeight(),Image.SCALE_DEFAULT));
+        ImageIcon scaledImage = new ImageIcon(initialImage.getScaledInstance(500,500,Image.SCALE_DEFAULT)); //fixed scaling
 
         JLabel picLabel = new JLabel(scaledImage);
         add(picLabel);
         revalidate();
         repaint();
-        */
+
 
         /*
         if(FBPanel.getFrameID()>0) {
@@ -176,12 +175,12 @@ public class VideoPanel extends JPanel {
         BufferedImage bImage = null;
         dataFB = TalkServlet.getFBData();
         System.out.println("Current: " + dataFB.getFrameID());
-            ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getImageByte());
-            try {
-                bImage = ImageIO.read(bis);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        ByteArrayInputStream bis = new ByteArrayInputStream(dataFB.getImageByte());
+        try {
+            bImage = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return bImage;
     }
 
@@ -199,7 +198,7 @@ public class VideoPanel extends JPanel {
         return bImage;
     }
 
-    /*
+
     private BufferedImage initialImage(){
         BufferedImage bImage = null;
         landingData = TalkServlet.getLandingData();
@@ -224,5 +223,5 @@ public class VideoPanel extends JPanel {
             }
         }
         return bImage;
-    }*/
+    }
 }

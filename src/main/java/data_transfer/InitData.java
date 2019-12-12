@@ -9,6 +9,7 @@ public class InitData implements Serializable {
     private ArrayList<Integer> progress = new ArrayList<Integer>();
     private byte [] imageByte;
 
+
     public void setVideoID(String videoID) {
         this.videoID = videoID;
     }
@@ -43,4 +44,3 @@ public class InitData implements Serializable {
         System.out.println(this.imageByte);
     }
 }
-

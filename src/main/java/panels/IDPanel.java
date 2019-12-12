@@ -15,4 +15,3 @@ public class IDPanel extends JPanel {
         setLayout(new GridLayout(0,2));     //sets the layout of the ant buttons
     }
 }
-

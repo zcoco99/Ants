@@ -96,6 +96,7 @@ public class TalkServlet {
         int frameID = FBPanel.getFrameID();
         String videoID = MenuVideo.getVidID();
         FBData.setTempFrameID(frameID);
+        System.out.println("Frame: " + frameID);
 
         sendFBData.setFB(fb);
         sendFBData.setFrameID();
@@ -141,7 +142,7 @@ public class TalkServlet {
         FBState=true;
     }
 
-    public static void postLanding(){/*
+    public static void postLanding(){
         //transitioning button
         //Database: antData, frameID
         String videoID = panels.MenuVideo.getVidID();
@@ -173,22 +174,26 @@ public class TalkServlet {
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
                 landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
+                //System.out.println(landingData);
                 //System.out.println("Ant data:");
                 //System.out.println(landingData.getAntData());
                 //System.out.println("Video ID:");
                 //System.out.println(landingData.getVideoID());
-                //System.out.println("Frame ID:");
-                //System.out.println(landingData.getFrameID());
+                System.out.println("Frame ID doPost:" + landingData.getFrameID());
                 //System.out.println("Image Byte:");
                 //System.out.println(landingData.getImageByte());
+                //System.out.println("Overlay Ant Data");
+                //System.out.println(landingData.getOverlayAntData());
+                //System.out.println("Overlay Image Byte");
+                //System.out.println(landingData.getOverlayImageByte());
             }
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
-    public static void postInit(){
+    public static void postInit(){/*
         //Database: progress bar
         HttpURLConnection conn = null;
         try{
@@ -202,7 +207,6 @@ public class TalkServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         //get image from server
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
@@ -212,24 +216,20 @@ public class TalkServlet {
                 initData = inputGson.fromJson(inputLine, InitData.class);
                 /*System.out.println("Ant data:");
                 System.out.println(dataFB.getAntData());*/
-                //System.out.println("Video ID:");
-                //System.out.println(dataFB.getVideoID());
-                //System.out.println("Frame ID:");
-                //System.out.println(dataFB.getFrameID());
-                //System.out.println("Image Byte:");
-                //System.out.println(Arrays.toString(dataFB.getImageByte()));
-            }
+        //System.out.println("Video ID:");
+        //System.out.println(dataFB.getVideoID());
+        //System.out.println("Frame ID:");
+        //System.out.println(dataFB.getFrameID());
+        //System.out.println("Image Byte:");
+        //System.out.println(Arrays.toString(dataFB.getImageByte()));
+            /*}
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /*
         String initString = "Hi init page";
         byte[] body = initString.getBytes(StandardCharsets.UTF_8);
-
         data_transfer.InitDataArrayList initDataArrayList = new data_transfer.InitDataArrayList();
-
         HttpURLConnection conn = null;
         try{
             //change URL to correct page
@@ -243,28 +243,21 @@ public class TalkServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         try (OutputStream outputStream = conn.getOutputStream()) {
             outputStream.write(body,0,body.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
             String inputLine;
             while((inputLine = bufferedReader.readLine()) != null) {
-
                 Gson inputGson = new Gson();
                 initDataArrayList = inputGson.fromJson(inputLine, data_transfer.InitDataArrayList.class);
             }
-
             System.out.println(initDataArrayList);
-
             ArrayList<String> jsonStringArray = new ArrayList<String>();
-
             jsonStringArray = initDataArrayList.getArrayJsonString();
-
             for(String i : jsonStringArray){
                 Gson inputGson = new Gson();
                 data_transfer.InitData initData = inputGson.fromJson(i, data_transfer.InitData.class);

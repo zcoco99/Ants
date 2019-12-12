@@ -32,28 +32,21 @@ public class MenuVideo extends JPanel{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         int w = bImage.getWidth();
         int h = bImage.getHeight();
-
         BufferedImage scaledImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();
         at.scale(1,1);
         AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         scaledImage = scaleOp.filter(bImage, scaledImage);
-
         setLayout(new GridLayout(0,2));
-
         vidID = 1; // default open video 1
-
         vid1 = new JButton(new ImageIcon(scaledImage));
         vid1.setBorder(BorderFactory.createEmptyBorder());
         vid1.setContentAreaFilled(false);
-
         vid2 = new JButton("Video 2");
         vid3 = new JButton("Video 3");
         vid4 = new JButton("Video 4");
-
         add(vid1);
         add(vid2);
         add(vid3);

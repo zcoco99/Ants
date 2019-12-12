@@ -1,6 +1,7 @@
 package panels;
 
 import data_transfer.FBData;
+import data_transfer.LandingData;
 import data_transfer.TalkServlet;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class FBPanel extends JPanel {
     private VideoPanel videoPanel;
     private static boolean fb;          //false for previous button and true for next button
     private static int frameID;
+    private LandingData landingData;
 
     public FBPanel(){
         //System.out.println("panels.FBPanel constructor called");
@@ -34,7 +36,10 @@ public class FBPanel extends JPanel {
         add(prevButton);
         add(nextButton);
         add(submitButton);
-        frameID = 1;
+
+        landingData = TalkServlet.getLandingData();
+        frameID = landingData.getFrameID();
+        System.out.println("Get Landing: " + frameID);
 
         submitButton.addActionListener(new ActionListener() {
             //When submitButton is clicked, submit data to servlet

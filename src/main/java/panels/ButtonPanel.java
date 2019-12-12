@@ -103,4 +103,3 @@ public class ButtonPanel extends JPanel {
         backFlag=state;
     }
 }
-
