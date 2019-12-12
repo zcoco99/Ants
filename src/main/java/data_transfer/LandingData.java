@@ -54,5 +54,5 @@ public class LandingData {
         this.overlayAntData = new ArrayList<>(overlayAntDataInput.stream().map(x -> new ArrayList<>(x)).collect(Collectors.toList()));
     }
 
-    public void setOverlayImageByte(byte [] overlayImageByteInput){this.overlayImageByte = overlayImageByteInput;}
+    public void setOverlayImageByte(byte[] overlayImageByteInput){this.overlayImageByte = overlayImageByteInput;}
 }

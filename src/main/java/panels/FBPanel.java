@@ -39,6 +39,7 @@ public class FBPanel extends JPanel {
 
         landingData = TalkServlet.getLandingData();
         frameID = landingData.getFrameID();
+
         System.out.println("Get Landing: " + frameID);
 
         submitButton.addActionListener(new ActionListener() {

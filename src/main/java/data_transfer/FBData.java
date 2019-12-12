@@ -13,7 +13,6 @@ public class FBData {
     private boolean error = false;
     private byte[] overlayImageByte;
 
-
     public FBData(){
         tempFrameID = 1;
     }

@@ -174,7 +174,6 @@ public class TalkServlet {
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
                 landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
-                //System.out.println(landingData);
                 //System.out.println("Ant data:");
                 //System.out.println(landingData.getAntData());
                 //System.out.println("Video ID:");
