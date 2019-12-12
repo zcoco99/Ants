@@ -96,6 +96,7 @@ public class TalkServlet {
         int frameID = FBPanel.getFrameID();
         String videoID = MenuVideo.getVidID();
         FBData.setTempFrameID(frameID);
+        System.out.println("Frame: " + frameID);
 
         sendFBData.setFB(fb);
         sendFBData.setFrameID();
@@ -173,18 +174,18 @@ public class TalkServlet {
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
                 landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
-                System.out.println("Ant data:");
-                System.out.println(landingData.getAntData());
-                System.out.println("Video ID:");
-                System.out.println(landingData.getVideoID());
-                System.out.println("Frame ID:");
+                //System.out.println("Ant data:");
+                //System.out.println(landingData.getAntData());
+                //System.out.println("Video ID:");
+                //System.out.println(landingData.getVideoID());
+                System.out.println("Frame ID doPOst:");
                 System.out.println(landingData.getFrameID());
-                System.out.println("Image Byte:");
-                System.out.println(landingData.getImageByte());
-                System.out.println("Overlay Ant Data");
-                System.out.println(landingData.getOverlayAntData());
-                System.out.println("Overlay Image Byte");
-                System.out.println(landingData.getOverlayImageByte());
+                //System.out.println("Image Byte:");
+                //System.out.println(landingData.getImageByte());
+                //System.out.println("Overlay Ant Data");
+                //System.out.println(landingData.getOverlayAntData());
+                //System.out.println("Overlay Image Byte");
+                //System.out.println(landingData.getOverlayImageByte());
             }
             bufferedReader.close();
         } catch (IOException e) {

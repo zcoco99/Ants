@@ -9,6 +9,7 @@ public class LandingData {
     private ArrayList<ArrayList<Integer>> overlayAntData = new ArrayList<ArrayList<Integer>>();
     private String videoID;
     private int frameID;
+    private static int tempFrameID;
     private byte[] imageByte;
     private byte[] overlayImageByte;
 
@@ -24,6 +25,18 @@ public class LandingData {
 
     public int getFrameID() {
         return frameID;
+    }
+
+    public void setFrameID(){
+        frameID = getTempFrameID();
+    }
+
+    public static int getTempFrameID(){
+        return tempFrameID;
+    }
+
+    public static void setTempFrameID(int id){
+        tempFrameID = id;
     }
 
     public byte[] getImageByte() {

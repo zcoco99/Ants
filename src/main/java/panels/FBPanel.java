@@ -1,6 +1,7 @@
 package panels;
 
 import data_transfer.FBData;
+import data_transfer.LandingData;
 import data_transfer.TalkServlet;
 
 import javax.swing.*;
@@ -34,7 +35,9 @@ public class FBPanel extends JPanel {
         add(prevButton);
         add(nextButton);
         add(submitButton);
-        frameID = 1;
+        //frameID = LandingData.getFrameID();
+        frameID = LandingData.getTempFrameID();
+        System.out.println("Get Landing: " + frameID);
 
         submitButton.addActionListener(new ActionListener() {
             //When submitButton is clicked, submit data to servlet
