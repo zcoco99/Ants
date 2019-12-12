@@ -141,7 +141,7 @@ public class TalkServlet {
         FBState=true;
     }
 
-    public static void postLanding(){/*
+    public static void postLanding(){
         //transitioning button
         //Database: antData, frameID
         String videoID = panels.MenuVideo.getVidID();
@@ -173,22 +173,26 @@ public class TalkServlet {
             while((inputLine = bufferedReader.readLine()) != null) {
                 Gson inputGson = new Gson();
                 landingData = inputGson.fromJson(inputLine, data_transfer.LandingData.class);
-                //System.out.println("Ant data:");
-                //System.out.println(landingData.getAntData());
-                //System.out.println("Video ID:");
-                //System.out.println(landingData.getVideoID());
-                //System.out.println("Frame ID:");
-                //System.out.println(landingData.getFrameID());
-                //System.out.println("Image Byte:");
-                //System.out.println(landingData.getImageByte());
+                System.out.println("Ant data:");
+                System.out.println(landingData.getAntData());
+                System.out.println("Video ID:");
+                System.out.println(landingData.getVideoID());
+                System.out.println("Frame ID:");
+                System.out.println(landingData.getFrameID());
+                System.out.println("Image Byte:");
+                System.out.println(landingData.getImageByte());
+                System.out.println("Overlay Ant Data");
+                System.out.println(landingData.getOverlayAntData());
+                System.out.println("Overlay Image Byte");
+                System.out.println(landingData.getOverlayImageByte());
             }
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
-    public static void postInit(){
+    public static void postInit(){/*
         //Database: progress bar
         HttpURLConnection conn = null;
         try{
@@ -218,13 +222,13 @@ public class TalkServlet {
                 //System.out.println(dataFB.getFrameID());
                 //System.out.println("Image Byte:");
                 //System.out.println(Arrays.toString(dataFB.getImageByte()));
-            }
+            /*}
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /*
+
         String initString = "Hi init page";
         byte[] body = initString.getBytes(StandardCharsets.UTF_8);
 
